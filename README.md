@@ -1,4 +1,6 @@
-# demo2
+# Vue Demo App
+
+### Based on PokeAPI to fetch data with Vuex
 
 ## Project setup
 
