@@ -1,6 +1,11 @@
 # Vue Demo App
 
-### Based on PokeAPI to fetch data with Vuex
+### Crafted with Vue Js
+- Vue version (3.2.31)
+- Vuex version (4.0.2)
+
+### Based on PokeAPI to fetch data
+See documentation on [Pokeapi](https://pokeapi.co/).
 
 ## Project setup
 
