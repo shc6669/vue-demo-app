@@ -5,24 +5,22 @@ enum Actions {
   ADD_BODY_ATTRIBUTE = "addBodyAttribute",
   REMOVE_BODY_ATTRIBUTE = "removeBodyAttribute",
   ADD_CLASSNAME = "addClassName",
-  REGISTER = "register",
-  UPDATE_USER = "updateUser",
-  FORGOT_PASSWORD = "forgotPassword",
   SET_BREADCRUMB_ACTION = "setBreadcrumbAction",
+  GET_ALL_POKEMON = "allPokemon",
+  GET_DETAIL_POKEMON = "detailPokemon",
 }
 
 enum Mutations {
   // mutation types
   SET_CLASSNAME_BY_POSITION = "appendBreadcrumb",
-  PURGE_AUTH = "logOut",
-  SET_USER = "setUser",
-  SET_PASSWORD = "setPassword",
   SET_ERROR = "setError",
   SET_BREADCRUMB_MUTATION = "setBreadcrumbMutation",
   SET_LAYOUT_CONFIG = "setLayoutConfig",
   RESET_LAYOUT_CONFIG = "resetLayoutConfig",
   OVERRIDE_LAYOUT_CONFIG = "overrideLayoutConfig",
   OVERRIDE_PAGE_LAYOUT_CONFIG = "overridePageLayoutConfig",
+  SET_VALUE_POKEMON_ALL = "setPokemon",
+  SET_VALUE_POKEMON_DETAIL = "setPokemonDetail",
 }
 
 export { Actions, Mutations };

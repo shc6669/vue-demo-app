@@ -42,7 +42,6 @@
   </div>
   <!-- end:: Body -->
   <KTScrollTop />
-  <KTInviteFriendsModal />
 </template>
 
 <script lang="ts">
@@ -56,11 +55,9 @@ import HtmlClass from "@/core/services/LayoutService";
 import KTToolbar from "@/layout/toolbar/Toolbar.vue";
 import KTScrollTop from "@/layout/extras/ScrollTop.vue";
 import KTLoader from "@/components/Loader.vue";
-import KTInviteFriendsModal from "@/components/modals/general/InviteFriendsModal.vue";
 import { Actions } from "@/store/enums/StoreEnums";
 import { MenuComponent } from "@/assets/ts/components";
 import { reinitializeComponents } from "@/core/plugins/keenthemes";
-import { removeModalBackdrop } from "@/core/helpers/dom";
 import {
   toolbarDisplay,
   loaderEnabled,
@@ -80,7 +77,6 @@ export default defineComponent({
     KTFooter,
     KTToolbar,
     KTScrollTop,
-    KTInviteFriendsModal,
     KTLoader,
   },
   setup() {
@@ -118,7 +114,6 @@ export default defineComponent({
       () => {
         MenuComponent.hideDropdowns(undefined);
 
-        removeModalBackdrop();
         nextTick(() => {
           reinitializeComponents();
         });

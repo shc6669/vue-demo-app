@@ -176,14 +176,12 @@
 
 <script lang="ts">
 import { defineComponent, onMounted } from "vue";
-// import TableWidget9 from "@/components/widgets/tables/Widget9.vue";
 import KTCard from "@/components/cards/Card1.vue";
 import { setCurrentPageTitle } from "@/core/helpers/breadcrumb";
 
 export default defineComponent({
   name: "dashboard",
   components: {
-    // TableWidget9,
     KTCard,
   },
   setup() {

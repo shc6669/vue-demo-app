@@ -462,15 +462,12 @@
     <!--end::Content-->
   </div>
   <!--end::Layout-->
-
-  <NewCardModal></NewCardModal>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted } from "vue";
 import { setCurrentPageBreadcrumbs } from "@/core/helpers/breadcrumb";
 import Dropdown3 from "@/components/dropdown/Dropdown3.vue";
-import NewCardModal from "@/components/modals/forms/NewCardModal.vue";
 import PaymentRecords from "@/components/customers/cards/overview/PaymentRecords.vue";
 import PaymentMethods from "@/components/customers/cards/overview/PaymentMethods.vue";
 import CreditBalance from "@/components/customers/cards/overview/CreditBalance.vue";
@@ -494,7 +491,6 @@ export default defineComponent({
     Earnings,
     Statement,
     Dropdown3,
-    NewCardModal,
   },
   setup() {
     onMounted(() => {
