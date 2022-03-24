@@ -483,7 +483,7 @@ import Earnings from "@/components/customers/cards/statments/Earnings.vue";
 import Statement from "@/components/customers/cards/statments/Statement.vue";
 
 export default defineComponent({
-  name: "customer-details",
+  name: "item-details",
   components: {
     PaymentRecords,
     PaymentMethods,
@@ -498,7 +498,7 @@ export default defineComponent({
   },
   setup() {
     onMounted(() => {
-      setCurrentPageBreadcrumbs("Customer Details", ["Apps", "Customers"]);
+      setCurrentPageBreadcrumbs("Item Details", ["Dashboard"]);
     });
 
     return {};

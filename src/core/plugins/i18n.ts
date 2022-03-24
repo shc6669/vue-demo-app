@@ -68,6 +68,7 @@ const messages = {
     subscriptionList: "Subscription List",
     addSubscription: "Add Subscription",
     viewSubscription: "View Subscription",
+    ItemDetails: 'Pokemon Details',
   },
   id: {
     dashboard: "Dashbor",
@@ -136,6 +137,7 @@ const messages = {
     subscriptionList: "Subscription List",
     addSubscription: "Add Subscription",
     viewSubscription: "View Subscription",
+    ItemDetails: 'Detail Pokemon',
   },
 };
 
