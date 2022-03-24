@@ -5,7 +5,8 @@
 - Vuex version (4.0.2)
 
 ### Based on PokeAPI to fetch data
-See documentation on [Pokeapi](https://pokeapi.co/).
+- See documentation on [Pokeapi](https://pokeapi.co/).
+- Add .env files to environment file
 
 ## Project setup
 
