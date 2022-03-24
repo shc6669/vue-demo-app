@@ -7,10 +7,9 @@
       :key="index"
     >
       <KTCard
-        :progress="50"
-        title="Fitnes App"
-        icon="media/svg/brand-logos/plurk.svg"
-        :users="users1"
+        :pokemonId="parseInt(pokemon.id)"
+        :title="pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)"
+        :icon="imagePreviewUrl + pokemon.id +'.png'"
       ></KTCard>
     </div>
     <!--end::Col-->
@@ -75,25 +74,18 @@ export default defineComponent({
   },
   setup() {
     const store = useStore();
-
+    const imagePreviewUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/';
     const pokemons = computed(() => {
       return store.getters.allPokemons;
     });
 
     onMounted(() => {
       setCurrentPageTitle("Dashboard");
-
       store.dispatch(Actions.GET_ALL_POKEMON);
     });
 
-    const example = [
-      { name: "Emma Smith", src: "media/avatars/300-6.jpg" },
-      { name: "Rudy Stone", src: "media/avatars/300-1.jpg" },
-      { name: "Susan Redwood", initials: "S", state: "primary" },
-    ];
-
     return {
-      example,
+      imagePreviewUrl,
       pokemons,
     };
   },

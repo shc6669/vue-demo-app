@@ -46,6 +46,17 @@ export default class ApiModule extends VuexModule {
         return ApiService.queryAll("pokemon?limit=9", value)
         .then(({ data }) => {
             this.context.commit(Mutations.SET_VALUE_POKEMONS, data);
+            const pokemons  = data;
+            const foo: string[] = [];
+            pokemons.results.forEach((pokemon) => {
+                pokemon.id = pokemon.url
+                    .split("/")
+                    .filter((part: any) => {
+                        return !!part;
+                    })
+                    .pop();
+                foo.push(pokemon);
+            })
         })
         .catch(({ response }) => {
             this.context.commit(Mutations.SET_ERROR, response.data.errors);
