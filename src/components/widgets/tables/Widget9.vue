@@ -4,30 +4,10 @@
     <!--begin::Header-->
     <div class="card-header border-0 pt-5">
       <h3 class="card-title align-items-start flex-column">
-        <span class="card-label fw-bolder fs-3 mb-1">Members Statistics</span>
+        <span class="card-label fw-bolder fs-3 mb-1">All Pokemon Data</span>
 
         <span class="text-muted mt-1 fw-bold fs-7">Over 500 members</span>
       </h3>
-
-      <div
-        class="card-toolbar"
-        data-bs-toggle="tooltip"
-        data-bs-placement="top"
-        data-bs-trigger="hover"
-        title="Click to add a user"
-      >
-        <a
-          href="#"
-          class="btn btn-sm btn-light-primary"
-          data-bs-toggle="modal"
-          data-bs-target="#kt_modal_invite_friends"
-        >
-          <span class="svg-icon svg-icon-3">
-            <inline-svg src="media/icons/duotune/arrows/arr075.svg" />
-          </span>
-          New Member
-        </a>
-      </div>
     </div>
     <!--end::Header-->
 

@@ -1,77 +1,257 @@
 <template>
-  <!--begin::Dashboard-->
-  <div class="row gy-5 g-xl-8">
-    <div class="col-xxl-6">
-      <MixedWidget2
-        widget-classes="card-xl-stretch mb-xl-8"
-        widget-color="danger"
-        chart-height="200"
-        stroke-color="#cb1e46"
-      ></MixedWidget2>
+  <!--begin::Row-->
+  <div class="row g-6 g-xl-9">
+    <!--begin::Col-->
+    <div class="col-md-6 col-xl-4">
+      <KTCard
+        :progress="50"
+        title="Fitnes App"
+        icon="media/svg/brand-logos/plurk.svg"
+        :users="users1"
+      ></KTCard>
     </div>
-    <div class="col-xxl-6">
-      <MixedWidget7
-        widget-classes="card-xxl-stretch-50 mb-5 mb-xl-8"
-        chart-color="primary"
-        chart-height="150"
-      ></MixedWidget7>
-      <MixedWidget10
-        widget-classes="card-xxl-stretch-50 mb-5 mb-xl-8"
-        chart-color="primary"
-        chart-height="168"
-      ></MixedWidget10>
-    </div>
-  </div>
+    <!--end::Col-->
 
-  <div class="row gy-5 gx-xl-8">
-    <div class="col-xxl-12">
-      <TableWidget9
-        widget-classes="card-xxl-stretch mb-5 mb-xl-8"
-      ></TableWidget9>
+    <!--begin::Col-->
+    <div class="col-md-6 col-xl-4">
+      <KTCard
+        status="Pending"
+        status-data-badge-color="badge-light"
+        :progress="30"
+        icon="media/svg/brand-logos/disqus.svg"
+        title="Leaf CRM"
+        date="May 10, 2021"
+        budget="$36,400.00"
+        :users="users2"
+      ></KTCard>
     </div>
-  </div>
+    <!--end::Col-->
 
-  <div class="row g-5 gx-xxl-8">
-    <div class="col-xxl-4">
-      <MixedWidget5
-        widget-classes="card-xl-stretch mb-xl-8"
-        chart-color="success"
-        chart-height="150"
-      ></MixedWidget5>
+    <!--begin::Col-->
+    <div class="col-md-6 col-xl-4">
+      <KTCard
+        status="Completed"
+        status-data-badge-color="badge-light-success"
+        :progress="100"
+        icon="media/svg/brand-logos/figma-1.svg"
+        title="Atica Banking"
+        date="Mar 14, 2021"
+        budget="$605,100.00"
+        :users="users3"
+      ></KTCard>
     </div>
-    <div class="col-xxl-8">
-      <TableWidget5
-        widget-classes="card-xxl-stretch mb-5 mb-xxl-8"
-      ></TableWidget5>
+    <!--end::Col-->
+
+    <!--begin::Col-->
+    <div class="col-md-6 col-xl-4">
+      <KTCard
+        status="Pending"
+        :progress="60"
+        status-data-badge-color="badge-light"
+        icon="media/svg/brand-logos/sentry-3.svg"
+        title="Finance Dispatch"
+        budget="$36,400.00"
+        :users="users4"
+      ></KTCard>
     </div>
+    <!--end::Col-->
+
+    <!--begin::Col-->
+    <div class="col-md-6 col-xl-4">
+      <KTCard
+        status="In Progress"
+        :progress="40"
+        icon="media/svg/brand-logos/xing-icon.svg"
+        title="9 Degree"
+        date="May 10, 2021"
+        budget="$36,400.00"
+        :users="users5"
+      ></KTCard>
+    </div>
+    <!--end::Col-->
+
+    <!--begin::Col-->
+    <div class="col-md-6 col-xl-4">
+      <KTCard
+        status="In Progress"
+        :progress="70"
+        icon="media/svg/brand-logos/tvit.svg"
+        title="GoPro App"
+        date="May 10, 2021"
+        budget="$36,400.00"
+        :users="users6"
+      ></KTCard>
+    </div>
+    <!--end::Col-->
+
+    <!--begin::Col-->
+    <div class="col-md-6 col-xl-4">
+      <KTCard
+        status="In Progress"
+        :progress="30"
+        icon="media/svg/brand-logos/aven.svg"
+        title="Buldozer CRM"
+        date="May 10, 2021"
+        budget="$36,400.00"
+        :users="users7"
+      ></KTCard>
+    </div>
+    <!--end::Col-->
+
+    <!--begin::Col-->
+    <div class="col-md-6 col-xl-4">
+      <KTCard
+        status="Overdue"
+        :progress="10"
+        status-data-badge-color="badge-light-danger"
+        icon="media/svg/brand-logos/treva.svg"
+        title="Aviasales App"
+        date="May 10, 2021"
+        budget="$36,400.00"
+        :users="users8"
+      ></KTCard>
+    </div>
+    <!--end::Col-->
+
+    <!--begin::Col-->
+    <div class="col-md-6 col-xl-4">
+      <KTCard
+        status="Completed"
+        :progress="100"
+        status-data-badge-color="badge-light-success"
+        icon="media/svg/brand-logos/kanba.svg"
+        title="Oppo CRM"
+        date="May 10, 2021"
+        budget="$36,400.00"
+        :users="users9"
+      ></KTCard>
+    </div>
+    <!--end::Row-->
+
+    <!--begin::Pagination-->
+    <div class="d-flex flex-stack flex-wrap pt-10">
+      <div class="fs-6 fw-bold text-gray-700">
+        Showing 1 to 10 of 50 entries
+      </div>
+
+      <!--begin::Pages-->
+      <ul class="pagination">
+        <li class="page-item previous">
+          <a href="#" class="page-link"><i class="previous"></i></a>
+        </li>
+
+        <li class="page-item active">
+          <a href="#" class="page-link">1</a>
+        </li>
+
+        <li class="page-item">
+          <a href="#" class="page-link">2</a>
+        </li>
+
+        <li class="page-item">
+          <a href="#" class="page-link">3</a>
+        </li>
+
+        <li class="page-item">
+          <a href="#" class="page-link">4</a>
+        </li>
+
+        <li class="page-item">
+          <a href="#" class="page-link">5</a>
+        </li>
+
+        <li class="page-item">
+          <a href="#" class="page-link">6</a>
+        </li>
+
+        <li class="page-item next">
+          <a href="#" class="page-link"><i class="next"></i></a>
+        </li>
+      </ul>
+      <!--end::Pages-->
+    </div>
+    <!--end::Pagination-->
   </div>
-  <!--end::Dashboard-->
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted } from "vue";
-import TableWidget9 from "@/components/widgets/tables/Widget9.vue";
-import TableWidget5 from "@/components/widgets/tables/Widget5.vue";
-import MixedWidget2 from "@/components/widgets/mixed/Widget2.vue";
-import MixedWidget5 from "@/components/widgets/mixed/Widget5.vue";
-import MixedWidget7 from "@/components/widgets/mixed/Widget7.vue";
-import MixedWidget10 from "@/components/widgets/mixed/Widget10.vue";
+// import TableWidget9 from "@/components/widgets/tables/Widget9.vue";
+import KTCard from "@/components/cards/Card1.vue";
 import { setCurrentPageTitle } from "@/core/helpers/breadcrumb";
 
 export default defineComponent({
   name: "dashboard",
   components: {
-    TableWidget9,
-    TableWidget5,
-    MixedWidget2,
-    MixedWidget5,
-    MixedWidget7,
-    MixedWidget10,
+    // TableWidget9,
+    KTCard,
   },
   setup() {
     onMounted(() => {
       setCurrentPageTitle("Dashboard");
     });
+
+    const users1 = [
+      { name: "Emma Smith", src: "media/avatars/300-6.jpg" },
+      { name: "Rudy Stone", src: "media/avatars/300-1.jpg" },
+      { name: "Susan Redwood", initials: "S", state: "primary" },
+    ];
+
+    const users2 = [
+      { name: "Alan Warden", initials: "A", state: "warning" },
+      { name: "Brian Cox", src: "media/avatars/300-5.jpg" },
+    ];
+
+    const users3 = [
+      { name: "Mad Masy", src: "media/avatars/300-6.jpg" },
+      { name: "Cris Willson", src: "media/avatars/300-1.jpg" },
+      { name: "Mike Garcie", initials: "M", state: "info" },
+    ];
+
+    const users4 = [
+      { name: "Nich Warden", initials: "N", state: "warning" },
+      { name: "Rob Otto", initials: "R", state: "success" },
+    ];
+
+    const users5 = [
+      { name: "Francis Mitcham", src: "media/avatars/300-20.jpg" },
+      { name: "Michelle Swanston", src: "media/avatars/300-7.jpg" },
+      { name: "Susan Redwood", initials: "S", state: "primary" },
+    ];
+
+    const users6 = [
+      { name: "Emma Smith", src: "media/avatars/300-6.jpg" },
+      { name: "Rudy Stone", src: "media/avatars/300-1.jpg" },
+      { name: "Susan Redwood", initials: "S", state: "primary" },
+    ];
+
+    const users7 = [
+      { name: "Meloday Macy", src: "media/avatars/300-2.jpg" },
+      { name: "Rabbin Watterman", initials: "S", state: "success" },
+    ];
+
+    const users8 = [
+      { name: "Emma Smith", src: "media/avatars/300-6.jpg" },
+      { name: "Rudy Stone", src: "media/avatars/300-1.jpg" },
+      { name: "Susan Redwood", initials: "S", state: "primary" },
+    ];
+
+    const users9 = [
+      { name: "Meloday Macy", src: "media/avatars/300-2.jpg" },
+      { name: "Rabbin Watterman", initials: "S", state: "danger" },
+    ];
+
+    return {
+      users1,
+      users2,
+      users3,
+      users4,
+      users5,
+      users6,
+      users7,
+      users8,
+      users9,
+    };
   },
 });
 </script>

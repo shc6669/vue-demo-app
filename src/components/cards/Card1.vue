@@ -1,6 +1,6 @@
 <template>
   <!--begin::Card-->
-  <a href="#" class="card border border-2 border-gray-300 border-hover">
+  <router-link :to="{name: 'item-details'}" class="card border border-2 border-gray-300 border-hover">
     <!--begin::Card header-->
     <div class="card-header border-0 pt-9">
       <!--begin::Card Title-->
@@ -104,7 +104,7 @@
       </template>
     </div>
     <!--end:: Card body-->
-  </a>
+  </router-link>
   <!--end::Card-->
 </template>
 
