@@ -19,8 +19,8 @@ enum Mutations {
   RESET_LAYOUT_CONFIG = "resetLayoutConfig",
   OVERRIDE_LAYOUT_CONFIG = "overrideLayoutConfig",
   OVERRIDE_PAGE_LAYOUT_CONFIG = "overridePageLayoutConfig",
-  SET_VALUE_POKEMON_ALL = "setPokemon",
-  SET_VALUE_POKEMON_DETAIL = "setPokemonDetail",
+  SET_VALUE_POKEMONS = "setPokemons",
+  SET_VALUE_POKEMON = "setPokemonDetail"
 }
 
 export { Actions, Mutations };

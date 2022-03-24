@@ -31,25 +31,41 @@ export interface PokemonDetails {
 
 @Module
 export default class ApiModule extends VuexModule {
-  @Action
-  [Actions.GET_ALL_POKEMON](value: any) {
-    return ApiService.queryAll("pokemon", value)
-      .then(({ data }) => {
-        this.context.commit(Mutations.SET_VALUE_POKEMON_DETAIL, data);
-      })
-      .catch(({ response }) => {
-        this.context.commit(Mutations.SET_ERROR, response.data.errors);
-      });
-  }
+    pokemons = {} as DataIndex;
 
-  @Action
-  [Actions.GET_DETAIL_POKEMON](value: string) {
-    return ApiService.getDetail("pokemon", value)
-      .then(({ data }) => {
-        this.context.commit(Mutations.SET_VALUE_POKEMON_DETAIL, data);
-      })
-      .catch(({ response }) => {
-        this.context.commit(Mutations.SET_ERROR, response.data.errors);
-      });
-  }
+    /**
+    * Get current pokemons object
+    * @returns Pokemons
+    */
+    get allPokemons(): DataIndex {
+        return this.pokemons;
+    }
+
+    @Action
+    [Actions.GET_ALL_POKEMON](value: any) {
+        return ApiService.queryAll("pokemon?limit=9", value)
+        .then(({ data }) => {
+            this.context.commit(Mutations.SET_VALUE_POKEMONS, data);
+        })
+        .catch(({ response }) => {
+            this.context.commit(Mutations.SET_ERROR, response.data.errors);
+        });
+    }
+
+    @Action
+    [Actions.GET_DETAIL_POKEMON](value: string) {
+        return ApiService.getDetail("pokemon", value)
+        .then(({ data }) => {
+            this.context.commit(Mutations.SET_VALUE_POKEMON, data);
+        })
+        .catch(({ response }) => {
+            this.context.commit(Mutations.SET_ERROR, response.data.errors);
+        });
+    }
+
+    @Mutation
+    [Mutations.SET_VALUE_POKEMONS](pokemons: any) {
+        this.pokemons = pokemons;
+        console.log(pokemons);
+    }
 }
