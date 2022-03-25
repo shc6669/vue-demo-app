@@ -33,6 +33,8 @@ export interface PokemonDetails {
 
 @Module
 export default class ApiModule extends VuexModule {
+    nextUrl = '';
+    prevUrl = '';
     pokemons = {} as DataIndex;
     pokemon = {} as PokemonDetails;
 
@@ -45,6 +47,22 @@ export default class ApiModule extends VuexModule {
     }
 
     /**
+    * Get current pokemons next object
+    * @returns Pokemons
+    */
+    get nextPokemons() {
+        return this.nextUrl;
+    }
+
+    /**
+    * Get current pokemons previous object
+    * @returns Pokemons
+    */
+    get prevPokemons() {
+        return this.prevUrl;
+    }
+
+    /**
     * Get current pokemons object
     * @returns Pokemons
     */
@@ -53,11 +71,15 @@ export default class ApiModule extends VuexModule {
     }
 
     @Action
-    [Actions.GET_ALL_POKEMON](value: any) {
-        return ApiService.queryAll("pokemon?limit=12", value)
+    [Actions.GET_ALL_POKEMON]() {
+        const params = {
+            limit: '30',
+            offset: ''
+        };
+        return ApiService.queryAll("pokemon", {params})
         .then(({ data }) => {
             this.context.commit(Mutations.SET_VALUE_POKEMONS, data);
-            const pokemons  = data;
+            const pokemons = data;
             const foo: string[] = [];
             pokemons.results.forEach((pokemon: any) => {
                 pokemon.id = pokemon.url
@@ -88,11 +110,12 @@ export default class ApiModule extends VuexModule {
     @Mutation
     [Mutations.SET_VALUE_POKEMONS](pokemons: any) {
         this.pokemons = pokemons;
+        this.nextUrl = pokemons.next;
+        this.prevUrl = pokemons.previous;
     }
 
     @Mutation
     [Mutations.SET_VALUE_POKEMON](pokemon: any) {
         this.pokemon = pokemon;
-        console.log(pokemon);
     }
 }
