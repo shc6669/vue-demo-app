@@ -32,6 +32,7 @@ export interface PokemonDetails {
 @Module
 export default class ApiModule extends VuexModule {
     pokemons = {} as DataIndex;
+    pokemon = {} as PokemonDetails;
 
     /**
     * Get current pokemons object
@@ -41,14 +42,22 @@ export default class ApiModule extends VuexModule {
         return this.pokemons;
     }
 
+    /**
+    * Get current pokemons object
+    * @returns Pokemons
+    */
+    get pokemonDetail(): PokemonDetails {
+        return this.pokemon;
+    }
+
     @Action
     [Actions.GET_ALL_POKEMON](value: any) {
-        return ApiService.queryAll("pokemon?limit=9", value)
+        return ApiService.queryAll("pokemon?limit=12", value)
         .then(({ data }) => {
             this.context.commit(Mutations.SET_VALUE_POKEMONS, data);
             const pokemons  = data;
             const foo: string[] = [];
-            pokemons.results.forEach((pokemon) => {
+            pokemons.results.forEach((pokemon: any) => {
                 pokemon.id = pokemon.url
                     .split("/")
                     .filter((part: any) => {
@@ -77,6 +86,11 @@ export default class ApiModule extends VuexModule {
     @Mutation
     [Mutations.SET_VALUE_POKEMONS](pokemons: any) {
         this.pokemons = pokemons;
-        console.log(pokemons);
+    }
+
+    @Mutation
+    [Mutations.SET_VALUE_POKEMON](pokemon: any) {
+        this.pokemon = pokemon;
+        console.log(pokemon);
     }
 }

@@ -9,7 +9,7 @@
       <div class="card-title" style="margin: auto !important;">
         <!--begin::Avatar-->
         <div class="symbol symbol-200px w-200px">
-          <img :src="icon" alt="image" class="p-3" />
+          <img :src="icon" :alt="title" class="p-3" />
         </div>
         <!--end::Avatar-->
       </div>

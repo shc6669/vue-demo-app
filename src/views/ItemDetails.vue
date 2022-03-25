@@ -10,8 +10,8 @@
           <!--begin::Summary-->
           <div class="d-flex flex-center flex-column mb-5">
             <!--begin::Avatar-->
-            <div class="symbol symbol-100px symbol-circle mb-7">
-              <img src="media/avatars/300-1.jpg" alt="image" />
+            <div class="symbol symbol-150px symbol-circle mb-7">
+              <img :src="imagePreviewUrl + pokemon.id +'.png'" :alt="pokemon.name" />
             </div>
             <!--end::Avatar-->
 
@@ -20,7 +20,7 @@
               href="#"
               class="fs-3 text-gray-800 text-hover-primary fw-bolder mb-1"
             >
-              Max Smith
+              {{pokemon.name}}
             </a>
             <!--end::Name-->
 
@@ -465,7 +465,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from "vue";
+import { computed, defineComponent, onMounted } from "vue";
 import { setCurrentPageBreadcrumbs } from "@/core/helpers/breadcrumb";
 import Dropdown3 from "@/components/dropdown/Dropdown3.vue";
 import PaymentRecords from "@/components/customers/cards/overview/PaymentRecords.vue";
@@ -478,6 +478,9 @@ import Logs from "@/components/customers/cards/events-and-logs/Logs.vue";
 
 import Earnings from "@/components/customers/cards/statments/Earnings.vue";
 import Statement from "@/components/customers/cards/statments/Statement.vue";
+
+import { useStore } from "vuex";
+import { Actions } from "@/store/enums/StoreEnums";
 
 export default defineComponent({
   name: "item-details",
@@ -492,12 +495,25 @@ export default defineComponent({
     Statement,
     Dropdown3,
   },
-  setup() {
-    onMounted(() => {
-      setCurrentPageBreadcrumbs("Item Details", ["Dashboard"]);
+  props: {
+    id: Number
+  },
+  setup(props) {
+    const store = useStore();
+    const imagePreviewUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/';
+    const pokemon = computed(() => {
+      return store.getters.pokemonDetail;
     });
 
-    return {};
+    onMounted(() => {
+      setCurrentPageBreadcrumbs("Pokemon Detail", ["Dashboard"]);
+      store.dispatch(Actions.GET_DETAIL_POKEMON, props.id);
+    });
+
+    return {
+      imagePreviewUrl,
+      pokemon
+    };
   },
 });
 </script>
