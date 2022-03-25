@@ -11,7 +11,7 @@
           <div class="d-flex flex-center flex-column mb-5">
             <!--begin::Avatar-->
             <div class="symbol symbol-150px symbol-circle mb-7">
-              <img :src="imagePreviewUrl + pokemon.id +'.png'" :alt="pokemon.name" />
+              <img v-if="pokemon.id" :src="imagePreviewUrl + pokemon.id +'.png'" :alt="pokemon.name" />
             </div>
             <!--end::Avatar-->
 
@@ -19,58 +19,35 @@
             <a
               href="#"
               class="fs-3 text-gray-800 text-hover-primary fw-bolder mb-1"
+              v-if="pokemon.name"
             >
-              {{pokemon.name}}
+              {{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}}
             </a>
             <!--end::Name-->
 
-            <!--begin::Position-->
-            <div class="fs-5 fw-bold text-muted mb-6">Software Enginer</div>
-            <!--end::Position-->
+            <!--begin::Type-->
+            <div class="fs-5 fw-bold text-bold mb-4 mt-6">Types</div>
+            <!--end::Type-->
 
             <!--begin::Info-->
             <div class="d-flex flex-wrap flex-center">
-              <!--begin::Stats-->
+              <!--begin::Types-->
               <div
-                class="border border-gray-300 border-dashed rounded py-3 px-3 mb-3"
+                class="border border-gray-300 border-dashed rounded py-3 px-3 mx-3 mb-3"
+                v-for="(info, index) in pokemon.types"
+                :key="index"
               >
                 <div class="fs-4 fw-bolder text-gray-700">
-                  <span class="w-75px">6,900</span>
-                  <span class="svg-icon svg-icon-3 svg-icon-success">
-                    <inline-svg src="media/icons/duotune/arrows/arr066.svg" />
+                  <span class="svg-icon svg-icon-3x svg-icon-success">
+                    <inline-svg v-if="info.type.name === 'fire'" src="media/icons/duotune/abstract/abs002.svg" />
+                    <inline-svg v-if="info.type.name === 'grass'" src="media/icons/duotune/abstract/abs047.svg" />
+                    <inline-svg v-if="info.type.name === 'poison'" src="media/icons/duotune/abstract/abs012.svg" />
+                    <inline-svg v-if="info.type.name === 'flying'" src="media/icons/duotune/abstract/abs025.svg" />
                   </span>
                 </div>
-                <div class="fw-bold text-muted">Earnings</div>
+                <div class="fw-bold text-center text-muted">{{ info.type.name }}</div>
               </div>
-              <!--end::Stats-->
-
-              <!--begin::Stats-->
-              <div
-                class="border border-gray-300 border-dashed rounded py-3 px-3 mx-4 mb-3"
-              >
-                <div class="fs-4 fw-bolder text-gray-700">
-                  <span class="w-50px">130</span>
-                  <span class="svg-icon svg-icon-3 svg-icon-danger">
-                    <inline-svg src="media/icons/duotune/arrows/arr065.svg" />
-                  </span>
-                </div>
-                <div class="fw-bold text-muted">Tasks</div>
-              </div>
-              <!--end::Stats-->
-
-              <!--begin::Stats-->
-              <div
-                class="border border-gray-300 border-dashed rounded py-3 px-3 mb-3"
-              >
-                <div class="fs-4 fw-bolder text-gray-700">
-                  <span class="w-50px">500</span>
-                  <span class="svg-icon svg-icon-3 svg-icon-success">
-                    <inline-svg src="media/icons/duotune/arrows/arr066.svg" />
-                  </span>
-                </div>
-                <div class="fw-bold text-muted">Hours</div>
-              </div>
-              <!--end::Stats-->
+              <!--end::Types-->
             </div>
             <!--end::Info-->
           </div>
@@ -93,21 +70,6 @@
                 </span>
               </span>
             </div>
-
-            <span
-              data-bs-toggle="tooltip"
-              data-bs-trigger="hover"
-              title="Edit customer details"
-            >
-              <a
-                href="#"
-                class="btn btn-sm btn-light-primary"
-                data-bs-toggle="modal"
-                data-bs-target="#kt_modal_update_customer"
-              >
-                Edit
-              </a>
-            </span>
           </div>
           <!--end::Details toggle-->
 
@@ -116,38 +78,26 @@
           <!--begin::Details content-->
           <div id="kt_customer_view_details" class="collapse show">
             <div class="py-5 fs-6">
-              <!--begin::Badge-->
-              <div class="badge badge-light-info d-inline">Premium user</div>
-              <!--begin::Badge-->
               <!--begin::Details item-->
-              <div class="fw-bolder mt-5">Account ID</div>
-              <div class="text-gray-600">ID-45453423</div>
+              <div class="fw-bolder mt-5">Height</div>
+              <div class="text-gray-600">{{pokemon.height}} cm</div>
               <!--begin::Details item-->
               <!--begin::Details item-->
-              <div class="fw-bolder mt-5">Billing Email</div>
+              <div class="fw-bolder mt-5">Weight</div>
+              <div class="text-gray-600">{{pokemon.weight}} gram</div>
+              <!--begin::Details item-->
+              <!--begin::Details item-->
+              <div class="fw-bolder mt-5">Abillities</div>
               <div class="text-gray-600">
-                <a href="#" class="text-gray-600 text-hover-primary"
-                  >info@keenthemes.com</a
-                >
+                <span v-for="(list, index) in pokemon.abilities" :key="index">
+                  <span>{{list.ability.name}}</span>
+                  <span v-if="index + 1 < pokemon.abilities.length">, <br /></span>
+                </span>
               </div>
               <!--begin::Details item-->
               <!--begin::Details item-->
-              <div class="fw-bolder mt-5">Billing Address</div>
-              <div class="text-gray-600">
-                101 Collin Street, <br />Melbourne 3000 VIC <br />Australia
-              </div>
-              <!--begin::Details item-->
-              <!--begin::Details item-->
-              <div class="fw-bolder mt-5">Language</div>
-              <div class="text-gray-600">English</div>
-              <!--begin::Details item-->
-              <!--begin::Details item-->
-              <div class="fw-bolder mt-5">Upcoming Invoice</div>
-              <div class="text-gray-600">54238-8693</div>
-              <!--begin::Details item-->
-              <!--begin::Details item-->
-              <div class="fw-bolder mt-5">Tax ID</div>
-              <div class="text-gray-600">TX-8674</div>
+              <div class="fw-bolder mt-5">Species</div>
+              <div class="text-gray-600" v-if="pokemon.species">{{pokemon.species.name}}</div>
               <!--begin::Details item-->
             </div>
           </div>
@@ -156,202 +106,6 @@
         <!--end::Card body-->
       </div>
       <!--end::Card-->
-
-      <!--begin::Connected Accounts-->
-      <div class="card mb-5 mb-xl-8">
-        <!--begin::Card header-->
-        <div class="card-header border-0">
-          <div class="card-title">
-            <h3 class="fw-bolder m-0">Connected Accounts</h3>
-          </div>
-        </div>
-        <!--end::Card header-->
-
-        <!--begin::Card body-->
-        <div class="card-body pt-2">
-          <div
-            class="notice d-flex bg-light-primary rounded border-primary border border-dashed mb-9 p-6"
-          >
-            <span class="svg-icon svg-icon-2tx svg-icon-primary me-4">
-              <inline-svg src="media/icons/duotune/art/art006.svg" />
-            </span>
-            <!--begin::Wrapper-->
-            <div class="d-flex flex-stack flex-grow-1">
-              <!--begin::Content-->
-              <div class="fw-bold">
-                <div class="fs-6 text-gray-700">
-                  By connecting an account, you hereby agree to our
-                  <a href="#" class="me-1">privacy policy</a>and
-                  <a href="#">terms of use</a>.
-                </div>
-              </div>
-              <!--end::Content-->
-            </div>
-            <!--end::Wrapper-->
-          </div>
-
-          <!--begin::Items-->
-          <div class="py-2">
-            <!--begin::Item-->
-            <div class="d-flex flex-stack">
-              <div class="d-flex">
-                <img
-                  src="media/svg/brand-logos/google-icon.svg"
-                  class="w-30px me-6"
-                  alt=""
-                />
-
-                <div class="d-flex flex-column">
-                  <a
-                    href="#"
-                    class="fs-5 text-dark text-hover-primary fw-bolder"
-                    >Google</a
-                  >
-                  <div class="fs-6 fw-bold text-muted">
-                    Plan properly your workflow
-                  </div>
-                </div>
-              </div>
-
-              <div class="d-flex justify-content-end">
-                <!--begin::Switch-->
-                <label
-                  class="form-check form-switch form-switch-sm form-check-custom form-check-solid"
-                >
-                  <!--begin::Input-->
-                  <input
-                    class="form-check-input"
-                    name="google"
-                    type="checkbox"
-                    value="1"
-                    id="kt_modal_connected_accounts_google"
-                    checked="checked"
-                  />
-                  <!--end::Input-->
-
-                  <!--begin::Label-->
-                  <span
-                    class="form-check-label fw-bold text-muted"
-                    for="kt_modal_connected_accounts_google"
-                  ></span>
-                  <!--end::Label-->
-                </label>
-                <!--end::Switch-->
-              </div>
-            </div>
-            <!--end::Item-->
-
-            <div class="separator separator-dashed my-5"></div>
-
-            <!--begin::Item-->
-            <div class="d-flex flex-stack">
-              <div class="d-flex">
-                <img
-                  src="media/svg/brand-logos/github.svg"
-                  class="w-30px me-6"
-                  alt=""
-                />
-
-                <div class="d-flex flex-column">
-                  <a
-                    href="#"
-                    class="fs-5 text-dark text-hover-primary fw-bolder"
-                    >Github</a
-                  >
-                  <div class="fs-6 fw-bold text-muted">
-                    Keep eye on on your Repositories
-                  </div>
-                </div>
-              </div>
-
-              <div class="d-flex justify-content-end">
-                <!--begin::Switch-->
-                <label
-                  class="form-check form-switch form-switch-sm form-check-custom form-check-solid"
-                >
-                  <!--begin::Input-->
-                  <input
-                    class="form-check-input"
-                    name="github"
-                    type="checkbox"
-                    value="1"
-                    id="kt_modal_connected_accounts_github"
-                    checked="checked"
-                  />
-                  <!--end::Input-->
-
-                  <!--begin::Label-->
-                  <span
-                    class="form-check-label fw-bold text-muted"
-                    for="kt_modal_connected_accounts_github"
-                  ></span>
-                  <!--end::Label-->
-                </label>
-                <!--end::Switch-->
-              </div>
-            </div>
-            <!--end::Item-->
-
-            <div class="separator separator-dashed my-5"></div>
-
-            <!--begin::Item-->
-            <div class="d-flex flex-stack">
-              <div class="d-flex">
-                <img
-                  src="media/svg/brand-logos/slack-icon.svg"
-                  class="w-30px me-6"
-                  alt=""
-                />
-
-                <div class="d-flex flex-column">
-                  <a
-                    href="#"
-                    class="fs-5 text-dark text-hover-primary fw-bolder"
-                    >Slack</a
-                  >
-                  <div class="fs-6 fw-bold text-muted">
-                    Integrate Projects Discussions
-                  </div>
-                </div>
-              </div>
-              <div class="d-flex justify-content-end">
-                <!--begin::Switch-->
-                <label
-                  class="form-check form-switch form-switch-sm form-check-custom form-check-solid"
-                >
-                  <!--begin::Input-->
-                  <input
-                    class="form-check-input"
-                    name="slack"
-                    type="checkbox"
-                    value="1"
-                    id="kt_modal_connected_accounts_slack"
-                  />
-                  <!--end::Input-->
-
-                  <!--begin::Label-->
-                  <span
-                    class="form-check-label fw-bold text-muted"
-                    for="kt_modal_connected_accounts_slack"
-                  ></span>
-                  <!--end::Label-->
-                </label>
-                <!--end::Switch-->
-              </div>
-            </div>
-            <!--end::Item-->
-          </div>
-          <!--end::Items-->
-        </div>
-        <!--end::Card body-->
-
-        <!--begin::Card footer-->
-        <div class="card-footer border-0 d-flex justify-content-center pt-0">
-          <button class="btn btn-sm btn-light-primary">Save Changes</button>
-        </div>
-        <!--end::Card footer-->
-      </div>
-      <!--end::Connected Accounts-->
     </div>
     <!--end::Sidebar-->
 
@@ -366,8 +120,8 @@
           <a
             class="nav-link text-active-primary pb-4 active"
             data-bs-toggle="tab"
-            href="#kt_customer_view_overview_tab"
-            >Overview</a
+            href="#kt_pokemon_stats_tab"
+            >Stats</a
           >
         </li>
         <!--end:::Tab item-->
@@ -377,41 +131,9 @@
           <a
             class="nav-link text-active-primary pb-4"
             data-bs-toggle="tab"
-            href="#kt_customer_view_overview_events_and_logs_tab"
-            >Events & Logs</a
+            href="#kt_pokemon_moves_tab"
+            >Moves</a
           >
-        </li>
-        <!--end:::Tab item-->
-
-        <!--begin:::Tab item-->
-        <li class="nav-item">
-          <a
-            class="nav-link text-active-primary pb-4"
-            data-kt-countup-tabs="true"
-            data-bs-toggle="tab"
-            href="#kt_customer_view_overview_statements"
-            >Statements</a
-          >
-        </li>
-        <!--end:::Tab item-->
-
-        <!--begin:::Tab item-->
-        <li class="nav-item ms-auto">
-          <!--begin::Action menu-->
-          <a
-            href="#"
-            class="btn btn-primary ps-7"
-            data-kt-menu-trigger="click"
-            data-kt-menu-attach="parent"
-            data-kt-menu-placement="bottom-end"
-          >
-            Actions
-            <span class="svg-icon svg-icon-2 me-0">
-              <inline-svg src="media/icons/duotune/arrows/arr072.svg" />
-            </span>
-          </a>
-          <Dropdown3></Dropdown3>
-          <!--end::Menu-->
         </li>
         <!--end:::Tab item-->
       </ul>
@@ -422,7 +144,7 @@
         <!--begin:::Tab pane-->
         <div
           class="tab-pane fade show active"
-          id="kt_customer_view_overview_tab"
+          id="kt_pokemon_stats_tab"
           role="tabpanel"
         >
           <PaymentRecords card-classes="mb-6 mb-xl-9"></PaymentRecords>
@@ -438,22 +160,11 @@
         <!--begin:::Tab pane-->
         <div
           class="tab-pane fade"
-          id="kt_customer_view_overview_events_and_logs_tab"
+          id="kt_pokemon_moves_tab"
           role="tabpanel"
         >
           <Logs card-classes="mb-6 mb-xl-9"></Logs>
           <Events card-classes="mb-6 mb-xl-9"></Events>
-        </div>
-        <!--end:::Tab pane-->
-
-        <!--begin:::Tab pane-->
-        <div
-          class="tab-pane fade"
-          id="kt_customer_view_overview_statements"
-          role="tabpanel"
-        >
-          <Earnings card-classes="mb-6 mb-xl-9"></Earnings>
-          <Statement card-classes="mb-6 mb-xl-9"></Statement>
         </div>
         <!--end:::Tab pane-->
       </div>
@@ -467,7 +178,6 @@
 <script lang="ts">
 import { computed, defineComponent, onMounted } from "vue";
 import { setCurrentPageBreadcrumbs } from "@/core/helpers/breadcrumb";
-import Dropdown3 from "@/components/dropdown/Dropdown3.vue";
 import PaymentRecords from "@/components/customers/cards/overview/PaymentRecords.vue";
 import PaymentMethods from "@/components/customers/cards/overview/PaymentMethods.vue";
 import CreditBalance from "@/components/customers/cards/overview/CreditBalance.vue";
@@ -475,9 +185,6 @@ import Invoices from "@/components/customers/cards/overview/Invoices.vue";
 
 import Events from "@/components/customers/cards/events-and-logs/Events.vue";
 import Logs from "@/components/customers/cards/events-and-logs/Logs.vue";
-
-import Earnings from "@/components/customers/cards/statments/Earnings.vue";
-import Statement from "@/components/customers/cards/statments/Statement.vue";
 
 import { useStore } from "vuex";
 import { Actions } from "@/store/enums/StoreEnums";
@@ -491,9 +198,6 @@ export default defineComponent({
     Invoices,
     Events,
     Logs,
-    Earnings,
-    Statement,
-    Dropdown3,
   },
   props: {
     id: Number

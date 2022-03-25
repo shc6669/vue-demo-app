@@ -25,7 +25,9 @@ export interface PokemonDetails {
     moves: Array<string>;
     past_types: Array<string>;
     sprites: any,
-    species: Array<string>;
+    species: {
+        name: string
+    };
     types: Array<string>;
 }
 
