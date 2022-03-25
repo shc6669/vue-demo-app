@@ -39,10 +39,22 @@
               >
                 <div class="fs-4 fw-bolder text-gray-700">
                   <span class="svg-icon svg-icon-3x svg-icon-success">
+                    <inline-svg v-if="info.type.name === 'bug'" src="media/icons/duotune/abstract/abs041.svg" />
+                    <inline-svg v-if="info.type.name === 'fairy'" src="media/icons/duotune/abstract/abs024.svg" />
                     <inline-svg v-if="info.type.name === 'fire'" src="media/icons/duotune/abstract/abs002.svg" />
-                    <inline-svg v-if="info.type.name === 'grass'" src="media/icons/duotune/abstract/abs047.svg" />
-                    <inline-svg v-if="info.type.name === 'poison'" src="media/icons/duotune/abstract/abs012.svg" />
+                    <inline-svg v-if="info.type.name === 'fighting'" src="media/icons/duotune/abstract/abs037.svg" />
                     <inline-svg v-if="info.type.name === 'flying'" src="media/icons/duotune/abstract/abs025.svg" />
+                    <inline-svg v-if="info.type.name === 'electric'" src="media/icons/duotune/abstract/abs023.svg" />
+                    <inline-svg v-if="info.type.name === 'grass'" src="media/icons/duotune/abstract/abs047.svg" />
+                    <inline-svg v-if="info.type.name === 'ghost'" src="media/icons/duotune/abstract/abs014.svg" />
+                    <inline-svg v-if="info.type.name === 'ground'" src="media/icons/duotune/abstract/abs027.svg" />
+                    <inline-svg v-if="info.type.name === 'ice'" src="media/icons/duotune/abstract/abs052.svg" />
+                    <inline-svg v-if="info.type.name === 'normal'" src="media/icons/duotune/abstract/abs015.svg" />
+                    <inline-svg v-if="info.type.name === 'poison'" src="media/icons/duotune/abstract/abs012.svg" />
+                    <inline-svg v-if="info.type.name === 'psychic'" src="media/icons/duotune/abstract/abs013.svg" />
+                    <inline-svg v-if="info.type.name === 'rock'" src="media/icons/duotune/abstract/abs050.svg" />
+                    <inline-svg v-if="info.type.name === 'steel'" src="media/icons/duotune/abstract/abs010.svg" />
+                    <inline-svg v-if="info.type.name === 'water'" src="media/icons/duotune/abstract/abs017.svg" />
                   </span>
                 </div>
                 <div class="fw-bold text-center text-muted">{{ info.type.name }}</div>
@@ -121,8 +133,7 @@
             class="nav-link text-active-primary pb-4 active"
             data-bs-toggle="tab"
             href="#kt_pokemon_stats_tab"
-            >Stats</a
-          >
+          >Stats</a>
         </li>
         <!--end:::Tab item-->
 
@@ -132,8 +143,7 @@
             class="nav-link text-active-primary pb-4"
             data-bs-toggle="tab"
             href="#kt_pokemon_moves_tab"
-            >Moves</a
-          >
+          >Moves</a>
         </li>
         <!--end:::Tab item-->
       </ul>
@@ -147,13 +157,9 @@
           id="kt_pokemon_stats_tab"
           role="tabpanel"
         >
-          <PaymentRecords card-classes="mb-6 mb-xl-9"></PaymentRecords>
-
-          <PaymentMethods card-classes="mb-6 mb-xl-9"></PaymentMethods>
-
-          <CreditBalance card-classes="mb-6 mb-xl-9"></CreditBalance>
-
-          <Invoices card-classes="mb-6 mb-xl-9"></Invoices>
+          <Stats card-classes="mb-6 mb-xl-9"
+            :states="pokemon.stats"
+          ></Stats>
         </div>
         <!--end:::Tab pane-->
 
@@ -163,8 +169,9 @@
           id="kt_pokemon_moves_tab"
           role="tabpanel"
         >
-          <Logs card-classes="mb-6 mb-xl-9"></Logs>
-          <Events card-classes="mb-6 mb-xl-9"></Events>
+          <Moves card-classes="mb-6 mb-xl-9"
+            :moves="pokemon.moves"
+          ></Moves>
         </div>
         <!--end:::Tab pane-->
       </div>
@@ -178,26 +185,16 @@
 <script lang="ts">
 import { computed, defineComponent, onMounted } from "vue";
 import { setCurrentPageBreadcrumbs } from "@/core/helpers/breadcrumb";
-import PaymentRecords from "@/components/customers/cards/overview/PaymentRecords.vue";
-import PaymentMethods from "@/components/customers/cards/overview/PaymentMethods.vue";
-import CreditBalance from "@/components/customers/cards/overview/CreditBalance.vue";
-import Invoices from "@/components/customers/cards/overview/Invoices.vue";
-
-import Events from "@/components/customers/cards/events-and-logs/Events.vue";
-import Logs from "@/components/customers/cards/events-and-logs/Logs.vue";
-
 import { useStore } from "vuex";
 import { Actions } from "@/store/enums/StoreEnums";
+import Moves from "@/components/pokemons/cards/stats-and-moves/Moves.vue";
+import Stats from "@/components/pokemons/cards/stats-and-moves/Stats.vue";
 
 export default defineComponent({
   name: "item-details",
   components: {
-    PaymentRecords,
-    PaymentMethods,
-    CreditBalance,
-    Invoices,
-    Events,
-    Logs,
+    Moves,
+    Stats,
   },
   props: {
     id: Number
