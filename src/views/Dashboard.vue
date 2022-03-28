@@ -61,7 +61,11 @@ export default defineComponent({
 
     onMounted(() => {
       setCurrentPageTitle("Dashboard");
-      store.dispatch(Actions.GET_ALL_POKEMON);
+      const params = {
+            limit: '30',
+            offset: ''
+      };
+      store.dispatch(Actions.GET_ALL_POKEMON, params);
     });
 
     const nextButton = () => {

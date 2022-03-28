@@ -71,11 +71,7 @@ export default class ApiModule extends VuexModule {
     }
 
     @Action
-    [Actions.GET_ALL_POKEMON]() {
-        const params = {
-            limit: '30',
-            offset: ''
-        };
+    [Actions.GET_ALL_POKEMON](params: any) {
         return ApiService.queryAll("pokemon", {params})
         .then(({ data }) => {
             this.context.commit(Mutations.SET_VALUE_POKEMONS, data);
