@@ -55,27 +55,37 @@ export default defineComponent({
   setup() {
     const store = useStore();
     const imagePreviewUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/';
+    const url = 'pokemon';
+    const queryParams = {
+      limit: '30',
+      offset: ''
+    };
     const pokemons = computed(() => {
       return store.getters.allPokemons;
     });
 
     onMounted(() => {
       setCurrentPageTitle("Dashboard");
-      const params = {
-            limit: '30',
-            offset: ''
-      };
-      store.dispatch(Actions.GET_ALL_POKEMON, params);
+      store.dispatch(Actions.GET_ALL_POKEMON, {
+        urlPage: url,
+        params: queryParams
+      });
     });
 
     const nextButton = () => {
-      store.getters.nextPokemons;
-      store.dispatch(Actions.GET_ALL_POKEMON);
+      const nextUrl = store.getters.nextPokemons;
+      store.dispatch(Actions.GET_ALL_POKEMON, {
+        urlPage: nextUrl,
+        params: null
+      });
     }
 
     const previousButton = () => {
-      store.getters.prevPokemons;
-      store.dispatch(Actions.GET_ALL_POKEMON);
+      const prevUrl = store.getters.prevPokemons;
+      store.dispatch(Actions.GET_ALL_POKEMON, {
+        urlPage: prevUrl,
+        params: null
+      });
     }
 
     return {
