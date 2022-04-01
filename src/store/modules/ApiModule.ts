@@ -37,6 +37,7 @@ export default class ApiModule extends VuexModule {
     prevUrl = '';
     pokemons = {} as DataIndex;
     pokemon = {} as PokemonDetails;
+    urlPage = 'pokemon';
 
     /**
     * Get current pokemons object
@@ -94,8 +95,9 @@ export default class ApiModule extends VuexModule {
     }
 
     @Action
-    [Actions.GET_DETAIL_POKEMON](value: string) {
-        return ApiService.getDetail("pokemon", value)
+    [Actions.GET_DETAIL_POKEMON](payload: any) {
+        const { pokemonId } = payload;
+        return ApiService.getDetail(this.urlPage, pokemonId)
         .then(({ data }) => {
             this.context.commit(Mutations.SET_VALUE_POKEMON, data);
         })

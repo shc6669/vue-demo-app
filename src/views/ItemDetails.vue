@@ -208,7 +208,9 @@ export default defineComponent({
 
     onMounted(() => {
       setCurrentPageBreadcrumbs("Pokemon Detail", ["Dashboard"]);
-      store.dispatch(Actions.GET_DETAIL_POKEMON, props.id);
+      store.dispatch(Actions.GET_DETAIL_POKEMON, {
+        pokemonId: props.id
+      });
     });
 
     return {
