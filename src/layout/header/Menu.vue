@@ -177,7 +177,6 @@ import { useRoute } from "vue-router";
 import { useI18n } from "vue-i18n/index";
 import MainMenuConfig from "@/core/config/MainMenuConfig";
 import { headerMenuIcons } from "@/core/helpers/config";
-import { version } from "@/core/helpers/documentation";
 
 export default defineComponent({
   name: "KTMenu",
@@ -203,7 +202,6 @@ export default defineComponent({
       headerMenuIcons,
       MainMenuConfig,
       translate,
-      version,
     };
   },
 });

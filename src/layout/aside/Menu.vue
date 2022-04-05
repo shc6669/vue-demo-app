@@ -168,9 +168,6 @@
               <inline-svg src="media/icons/duotune/general/gen005.svg" />
             </span>
           </span>
-          <span class="menu-title"
-            >{{ translate("changelog") }} v{{ version }}</span
-          >
         </a>
       </div>
     </div>
@@ -183,7 +180,6 @@
 import { defineComponent, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n/index";
 import { useRoute } from "vue-router";
-import { version } from "@/core/helpers/documentation";
 import { asideMenuIcons } from "@/core/helpers/config";
 import MainMenuConfig from "@/core/config/MainMenuConfig";
 
@@ -217,7 +213,6 @@ export default defineComponent({
       hasActiveChildren,
       MainMenuConfig,
       asideMenuIcons,
-      version,
       translate,
     };
   },
